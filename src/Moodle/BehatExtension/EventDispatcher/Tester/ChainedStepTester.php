@@ -56,6 +56,11 @@ class ChainedStepTester implements StepTester {
     const EXCEPTIONS_STEP_TEXT = 'I look for exceptions';
 
     /**
+     * The text of the step to look for the page to finish loading.
+     */
+    const PENDING_STEP_TEXT = 'I wait for the page to finish processing';
+
+    /**
      * @var StepTester Base step tester.
      */
     private $singlesteptester;
@@ -124,7 +129,13 @@ class ChainedStepTester implements StepTester {
             // Extra step, looking for a moodle exception, a debugging() message or a PHP debug message.
             $checkingStep = new StepNode('Given', self::EXCEPTIONS_STEP_TEXT, array(), $step->getLine());
             $afterExceptionCheckingEvent = $this->singlesteptester->test($env, $feature, $checkingStep, $skip);
-            return $this->checkSkipResult($afterExceptionCheckingEvent);
+            $newresult = $this->checkSkipResult($afterExceptionCheckingEvent);
+            if ($newresult instanceof SkippedStepResult) {
+                return $newresult;
+            }
+
+            $checkingStep = new StepNode('Given', self::PENDING_STEP_TEXT, array(), $step->getLine());
+            return $this->singlesteptester->test($env, $feature, $checkingStep, $skip);
         }
 
         return $this->runChainedSteps($env, $feature, $result, $skip);
