@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Behat\Behat\EventDispatcher\ServiceContainer\EventDispatcherExtension;
 use Moodle\BehatExtension\Driver\MoodleSelenium2Factory;
+use Moodle\BehatExtension\Driver\FacebookFactory;
 use Behat\Testwork\Suite\ServiceContainer\SuiteExtension;
 use Behat\Behat\Definition\ServiceContainer\DefinitionExtension;
 use Behat\Testwork\Cli\ServiceContainer\CliExtension;
@@ -282,6 +283,7 @@ class BehatExtension implements ExtensionInterface {
     public function initialize(ExtensionManager $extensionManager) {
         if (null !== $minkExtension = $extensionManager->getExtension('mink')) {
             $minkExtension->registerDriverFactory(new MoodleSelenium2Factory());
+            $minkExtension->registerDriverFactory(new FacebookFactory());
         }
     }
 

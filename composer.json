@@ -19,7 +19,8 @@
         "behat/mink-goutte-driver": "~1.2",
         "behat/mink-selenium2-driver": "~1.3",
         "symfony/process": "2.8.*",
-        "behat/behat": "3.5.*"
+        "behat/behat": "3.5.*",
+        "silverstripe/mink-facebook-web-driver": "^1.0"
     },
     "autoload": {
         "psr-0": {
