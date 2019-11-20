@@ -177,9 +177,7 @@ class FacebookWebDriver extends SilverstripeFacebookWebDriver
      */
     protected function ensureElementIsVisible(RemoteWebElement $element)
     {
-        if (!$element->isDisplayed()) {
-            $this->getWebDriver()->executeScript('arguments[0].scrollIntoView(true);', [$element]);
-        }
+        $this->getWebDriver()->executeScript('arguments[0].scrollIntoView(true);', [$element]);
     }
 
     /**
@@ -347,6 +345,7 @@ JS;
      */
     private function selectRadioValue(RemoteWebElement $element, $value)
     {
+        $this->ensureElementIsVisible($element);
         // short-circuit when we already have the right button of the group to avoid XPath queries
         if ($element->getAttribute('value') === $value) {
             $element->click();
@@ -391,6 +390,7 @@ XPATH;
             throw new DriverException($message, 0, $e);
         }
 
+        $this->ensureElementIsVisible($input);
         $input->click();
     }
 
