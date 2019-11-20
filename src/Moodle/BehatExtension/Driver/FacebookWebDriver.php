@@ -30,6 +30,37 @@ use SilverStripe\MinkFacebookWebDriver\FacebookWebDriver as SilverstripeFacebook
 class FacebookWebDriver extends SilverstripeFacebookWebDriver
 {
     /**
+     * @var String
+     */
+    protected static $currentBrowserName = '';
+
+    /**
+     * Instantiates the driver.
+     *
+     * @param string $browserName Browser name
+     * @param array $desiredCapabilities The desired capabilities
+     * @param string $wdHost The WebDriver host
+     */
+    public function __construct(
+        $browserName = self::DEFAULT_BROWSER,
+        $desiredCapabilities = [],
+        $wdHost = 'http://localhost:4444/wd/hub'
+    ) {
+        parent::__construct($browserName, $desiredCapabilities, $wdHost);
+
+        self::$currentBrowserName = $browserName;
+    }
+
+    /**
+     * Get the name of the current web browser if one is registered.
+     *
+     * @return string
+     */
+    public static function getCurrentBrowserName(): string {
+        return self::$currentBrowserName;
+    }
+
+    /**
      * Makes sure that the Syn event library has been injected into the current page,
      * and return $this for a fluid interface,
      *

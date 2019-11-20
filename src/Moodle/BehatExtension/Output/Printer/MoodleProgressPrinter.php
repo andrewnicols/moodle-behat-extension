@@ -90,12 +90,19 @@ final class MoodleProgressPrinter implements SetupPrinter {
     public function printMoodleInfo($printer) {
         require_once($this->moodledirroot . '/lib/behat/classes/util.php');
 
-        $browser = \Moodle\BehatExtension\Driver\MoodleSelenium2Driver::getBrowser();
+        if ($browser = \Moodle\BehatExtension\Driver\FacebookWebDriver::getCurrentBrowserName()) {
+            $driver = "Facebook";
+        } else {
+            $driver = "Selenium2";
+            $browser = \Moodle\BehatExtension\Driver\MoodleSelenium2Driver::getBrowser();
+        }
 
         // Calling all directly from here as we avoid more behat framework extensions.
         $runinfo = \behat_util::get_site_info();
-        $runinfo .= 'Server OS "' . PHP_OS . '"' . ', Browser: "' . $browser . '"' . PHP_EOL;
-        if (in_array(strtolower($browser), ['chrome','firefox'])) {
+        $runinfo .= "Server OS: '" .  PHP_OS . "'"  . PHP_EOL;
+        $runinfo .= "Browser: '{$browser}'" . PHP_EOL;
+        $runinfo .= "Driver: '{$driver}'" . PHP_EOL;
+        if (in_array(strtolower($browser), ['chrome', 'firefox'])) {
             $runinfo .= 'Browser specific fixes have been applied. See http://docs.moodle.org/dev/Acceptance_testing#Browser_specific_fixes' .  PHP_EOL;
         }
         $runinfo .= 'Started at ' . date('d-m-Y, H:i', time());
