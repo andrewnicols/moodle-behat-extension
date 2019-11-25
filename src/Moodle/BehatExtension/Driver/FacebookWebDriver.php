@@ -395,6 +395,57 @@ XPATH;
     }
 
     /**
+     * Ensures the element is a checkbox
+     *
+     * @param RemoteWebElement $element
+     * @param string $xpath XPath to the element
+     * @param string $type Required value of 'type' property on this input
+     * @param string $action Descriptive action being performed on this element
+     *
+     * @throws DriverException
+     */
+    private function ensureInputType(RemoteWebElement $element, $xpath, $type, $action)
+    {
+        if ('input' !== $element->getTagName()
+            || $type !== $element->getAttribute('type')
+        ) {
+            throw new DriverException(
+                "Impossible to {$action} the element with XPath \"{$xpath}\" as it is not a {$type} input"
+            );
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function check($xpath)
+    {
+        $element = $this->findElement($xpath);
+        $this->ensureInputType($element, $xpath, 'checkbox', 'check');
+
+        if ($element->isSelected()) {
+            return;
+        }
+
+        $this->clickOnElement($element);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function uncheck($xpath)
+    {
+        $element = $this->findElement($xpath);
+        $this->ensureInputType($element, $xpath, 'checkbox', 'uncheck');
+
+        if (!$element->isSelected()) {
+            return;
+        }
+
+        $this->clickOnElement($element);
+    }
+
+    /**
      * Executes JS on a given element - pass in a js script string and {{ELEMENT}} will
      * be replaced with a reference to the element
      *
