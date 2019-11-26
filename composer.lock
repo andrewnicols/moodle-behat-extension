@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "andrewnicols/mink-facebook-web-driver",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrewnicols/MinkFacebookWebDriver.git",
-                "reference": "4864d7fb69dcb914746069bd89d287fcffcf5f7a"
+                "reference": "dfe9bc1d7ae1495fb5c0d47fee53ecceef29ca30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrewnicols/MinkFacebookWebDriver/zipball/4864d7fb69dcb914746069bd89d287fcffcf5f7a",
-                "reference": "4864d7fb69dcb914746069bd89d287fcffcf5f7a",
+                "url": "https://api.github.com/repos/andrewnicols/MinkFacebookWebDriver/zipball/dfe9bc1d7ae1495fb5c0d47fee53ecceef29ca30",
+                "reference": "dfe9bc1d7ae1495fb5c0d47fee53ecceef29ca30",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2019-11-29T03:35:20+00:00"
+            "time": "2019-11-29T03:54:08+00:00"
         },
         {
             "name": "behat/behat",
