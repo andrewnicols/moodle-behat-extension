@@ -90,12 +90,8 @@ final class MoodleProgressPrinter implements SetupPrinter {
     public function printMoodleInfo($printer) {
         require_once($this->moodledirroot . '/lib/behat/classes/util.php');
 
-        if ($browser = \Moodle\BehatExtension\Driver\FacebookWebDriver::getCurrentBrowserName()) {
-            $driver = "Facebook";
-        } else {
-            $driver = "Selenium2";
-            $browser = \Moodle\BehatExtension\Driver\MoodleSelenium2Driver::getBrowser();
-        }
+        $driver = "Facebook";
+        $browser = \Moodle\BehatExtension\Driver\FacebookWebDriver::getCurrentBrowserName();
 
         // Calling all directly from here as we avoid more behat framework extensions.
         $runinfo = \behat_util::get_site_info();

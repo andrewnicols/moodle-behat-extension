@@ -14,10 +14,6 @@ spl_autoload_register(function($class) {
         require_once(__DIR__.'/src/'.str_replace('\\', '/', $class).'.php');
         return true;
     }
-    if (false !== strpos($class, 'Behat\\Mink\\Driver\\Selenium2Driver')) {
-        require_once(__DIR__.'/src/Moodle/BehatExtension/Driver/MoodleSelenium2Driver.php');
-        return true;
-    }
 }, true, false);
 
 return new Moodle\BehatExtension\ServiceContainer\BehatExtension;
