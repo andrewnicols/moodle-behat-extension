@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "andrewnicols/mink-facebook-web-driver",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrewnicols/MinkFacebookWebDriver.git",
-                "reference": "33abe7741513f239732d2cf5005ef993ab06ad18"
+                "reference": "4864d7fb69dcb914746069bd89d287fcffcf5f7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrewnicols/MinkFacebookWebDriver/zipball/33abe7741513f239732d2cf5005ef993ab06ad18",
-                "reference": "33abe7741513f239732d2cf5005ef993ab06ad18",
+                "url": "https://api.github.com/repos/andrewnicols/MinkFacebookWebDriver/zipball/4864d7fb69dcb914746069bd89d287fcffcf5f7a",
+                "reference": "4864d7fb69dcb914746069bd89d287fcffcf5f7a",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2019-11-28T05:33:16+00:00"
+            "time": "2019-11-29T03:35:20+00:00"
         },
         {
             "name": "behat/behat",
@@ -626,12 +626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrewnicols/php-webdriver.git",
-                "reference": "25f1b352211d7ffb26597a2216f0aa56da36f4a6"
+                "reference": "ddbde2cbe30b3f415bc480b44299e6ad96b0b993"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrewnicols/php-webdriver/zipball/25f1b352211d7ffb26597a2216f0aa56da36f4a6",
-                "reference": "25f1b352211d7ffb26597a2216f0aa56da36f4a6",
+                "url": "https://api.github.com/repos/andrewnicols/php-webdriver/zipball/ddbde2cbe30b3f415bc480b44299e6ad96b0b993",
+                "reference": "ddbde2cbe30b3f415bc480b44299e6ad96b0b993",
                 "shasum": ""
             },
             "require": {
@@ -707,7 +707,7 @@
                 "forum": "https://www.facebook.com/groups/phpwebdriver/",
                 "source": "https://github.com/facebook/php-webdriver"
             },
-            "time": "2019-11-26T01:52:33+00:00"
+            "time": "2019-11-27T04:17:30+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1788,16 +1788,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
                 "shasum": ""
             },
             "require": {
@@ -1809,7 +1809,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -1842,20 +1842,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
                 "shasum": ""
             },
             "require": {
@@ -1867,7 +1867,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -1901,7 +1901,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/process",
