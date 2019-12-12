@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "andrewnicols/mink-facebook-web-driver",
-            "version": "v1.0.11",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrewnicols/MinkFacebookWebDriver.git",
-                "reference": "60471eb64fec2b4104329caf689935615c42ba1c"
+                "reference": "3e82c1fdd6edcc065d24fada202797ff1ed43329"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrewnicols/MinkFacebookWebDriver/zipball/60471eb64fec2b4104329caf689935615c42ba1c",
-                "reference": "60471eb64fec2b4104329caf689935615c42ba1c",
+                "url": "https://api.github.com/repos/andrewnicols/MinkFacebookWebDriver/zipball/3e82c1fdd6edcc065d24fada202797ff1ed43329",
+                "reference": "3e82c1fdd6edcc065d24fada202797ff1ed43329",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2019-12-12T04:46:32+00:00"
+            "time": "2019-12-13T00:52:03+00:00"
         },
         {
             "name": "behat/behat",
@@ -626,12 +626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrewnicols/php-webdriver.git",
-                "reference": "71fac9867c180009629ed130a301e2d8749ef803"
+                "reference": "6be5953d5f95fec1da895b87144c32cb05d16260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrewnicols/php-webdriver/zipball/71fac9867c180009629ed130a301e2d8749ef803",
-                "reference": "71fac9867c180009629ed130a301e2d8749ef803",
+                "url": "https://api.github.com/repos/andrewnicols/php-webdriver/zipball/6be5953d5f95fec1da895b87144c32cb05d16260",
+                "reference": "6be5953d5f95fec1da895b87144c32cb05d16260",
                 "shasum": ""
             },
             "require": {
@@ -708,7 +708,7 @@
                 "forum": "https://www.facebook.com/groups/phpwebdriver/",
                 "source": "https://github.com/facebook/php-webdriver"
             },
-            "time": "2019-12-12T04:41:56+00:00"
+            "time": "2019-12-12T23:15:51+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
