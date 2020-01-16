@@ -55,6 +55,9 @@ class ChainedStepTester implements StepTester {
      */
     const EXCEPTIONS_STEP_TEXT = 'I look for exceptions';
 
+    /** Wait for pending JS step text */
+    const WAIT_FOR_PENDING_JS_STEP_TEXT = 'I wait for pending javascript';
+
     /**
      * @var StepTester Base step tester.
      */
@@ -100,23 +103,22 @@ class ChainedStepTester implements StepTester {
      * {@inheritdoc}
      */
     public function test(Environment $env, FeatureNode $feature, StepNode $step, $skip) {
+        // Ensure that the page is ready.
+        $checkingStep = new StepNode('Given', self::WAIT_FOR_PENDING_JS_STEP_TEXT, [], $step->getLine());
+        $afterCheckingEvent = $this->singlesteptester->test($env, $feature, $checkingStep, $skip);
+        $result = $this->checkSkipResult($afterCheckingEvent);
+
+        if ($this->isFail($result)) {
+            return $result;
+        }
+
+        // Run the actual step.
         $result = $this->singlesteptester->test($env, $feature, $step, $skip);
 
         if (!($result instanceof ExecutedStepResult) || !$this->supportsResult($result->getCallResult())) {
             $result = $this->checkSkipResult($result);
 
-            // If undefined step then don't continue chained steps.
-            if ($result instanceof UndefinedStepResult) {
-                return $result;
-            }
-
-            // If exception caught, then don't continue chained steps.
-            if (($result instanceof ExecutedStepResult) && $result->hasException()) {
-                return $result;
-            }
-
-            // If step is skipped, then return. no need to continue chain steps.
-            if ($result instanceof SkippedStepResult) {
+            if ($this->isFail($result)) {
                 return $result;
             }
 
@@ -124,10 +126,48 @@ class ChainedStepTester implements StepTester {
             // Extra step, looking for a moodle exception, a debugging() message or a PHP debug message.
             $checkingStep = new StepNode('Given', self::EXCEPTIONS_STEP_TEXT, array(), $step->getLine());
             $afterExceptionCheckingEvent = $this->singlesteptester->test($env, $feature, $checkingStep, $skip);
-            return $this->checkSkipResult($afterExceptionCheckingEvent);
+            $result = $this->checkSkipResult($afterExceptionCheckingEvent);
+
+            if ($this->isFail($result)) {
+                return $result;
+            }
+
+            // Look for any pending javascript.
+            // This can be called before the exception checker, but an exception may be the cause of the pending JS and
+            // therefore make it harder to debug.
+            $checkingStep = new StepNode('Given', self::WAIT_FOR_PENDING_JS_STEP_TEXT, [], $step->getLine());
+            $afterCheckingEvent = $this->singlesteptester->test($env, $feature, $checkingStep, $skip);
+            $result = $this->checkSkipResult($afterCheckingEvent);
+
+            return $result;
         }
 
         return $this->runChainedSteps($env, $feature, $result, $skip);
+    }
+
+    /**
+     * Check hether the supplied StepResult was some kind of fail.
+     *
+     * @param StepResult $result
+     * @return bool
+     */
+    protected function isFail(StepResult $result): bool {
+        // If undefined step then don't continue chained steps.
+        if ($result instanceof UndefinedStepResult) {
+            return true;
+        }
+
+        // If exception caught, then don't continue chained steps.
+        if (($result instanceof ExecutedStepResult) && $result->hasException()) {
+            return true;
+        }
+
+        // If step is skipped, then return. no need to continue chain steps.
+        if ($result instanceof SkippedStepResult) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
