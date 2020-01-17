@@ -132,13 +132,6 @@ class ChainedStepTester implements StepTester {
                 return $result;
             }
 
-            // Look for any pending javascript.
-            // This can be called before the exception checker, but an exception may be the cause of the pending JS and
-            // therefore make it harder to debug.
-            $checkingStep = new StepNode('Given', self::WAIT_FOR_PENDING_JS_STEP_TEXT, [], $step->getLine());
-            $afterCheckingEvent = $this->singlesteptester->test($env, $feature, $checkingStep, $skip);
-            $result = $this->checkSkipResult($afterCheckingEvent);
-
             return $result;
         }
 
