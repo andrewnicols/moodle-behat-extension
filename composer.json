@@ -17,14 +17,14 @@
         "behat/mink": "~1.8",
         "behat/mink-extension": "~2.3",
         "behat/mink-goutte-driver": "~1.2",
-        "oleg-andreyev/mink-facebook-web-driver": "dev-master as 1.4.x-dev",
+        "oleg-andreyev/mink-facebook-web-driver": "dev-switch_to_php_webdriver as 2.0.x-dev",
         "symfony/process": "^4.0 || ^5.0",
         "behat/behat": "3.6.*"
      },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/oleg-andreyev/MinkPhpWebDriver"
+            "url": "https://github.com/andrewnicols/MinkPhpWebDriver"
         }
     ],
     "autoload": {
