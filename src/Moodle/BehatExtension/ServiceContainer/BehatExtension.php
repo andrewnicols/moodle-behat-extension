@@ -10,7 +10,6 @@ use Behat\Testwork\ServiceContainer\ServiceProcessor;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Moodle\BehatExtension\Output\Formatter\MoodleProgressFormatterFactory;
-use Behat\Behat\Tester\ServiceContainer\TesterExtension;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Behat\Behat\EventDispatcher\ServiceContainer\EventDispatcherExtension;
@@ -18,7 +17,6 @@ use Moodle\BehatExtension\Driver\MoodleSelenium2Factory;
 use Behat\Testwork\Suite\ServiceContainer\SuiteExtension;
 use Behat\Behat\Definition\ServiceContainer\DefinitionExtension;
 use Behat\Testwork\Cli\ServiceContainer\CliExtension;
-use Behat\Behat\Definition\Printer\ConsoleDefinitionListPrinter;
 use Behat\Behat\Gherkin\ServiceContainer\GherkinExtension;
 use Behat\Testwork\Output\ServiceContainer\OutputExtension;
 use Behat\Testwork\Specification\ServiceContainer\SpecificationExtension;
@@ -67,12 +65,6 @@ class BehatExtension implements ExtensionInterface {
         $moodleprogressformatter = new MoodleProgressFormatterFactory();
         $moodleprogressformatter->buildFormatter($container);
 
-        // Load custom step tester event dispatcher.
-        $this->loadEventDispatchingStepTester($container);
-
-        // Load chained step tester.
-        $this->loadChainedStepTester($container);
-
         // Load step count formatter.
         $this->loadMoodleListFormatter($container);
 
@@ -81,9 +73,6 @@ class BehatExtension implements ExtensionInterface {
 
         // Load screenshot formatter.
         $this->loadMoodleScreenshotFormatter($container);
-
-        // Load namespace alias.
-        $this->alias_old_namespaces();
 
         // Load skip passed controller and list locator.
         $this->loadSkipPassedController($container, $config['passed_cache']);
@@ -212,34 +201,6 @@ class BehatExtension implements ExtensionInterface {
     }
 
     /**
-     * Loads chained step tester.
-     *
-     * @param ContainerBuilder $container
-     */
-    protected function loadChainedStepTester(ContainerBuilder $container) {
-        // Chained steps.
-        $definition = new Definition('Moodle\BehatExtension\EventDispatcher\Tester\ChainedStepTester', array(
-            new Reference(TesterExtension::STEP_TESTER_ID),
-        ));
-        $definition->addTag(TesterExtension::STEP_TESTER_WRAPPER_TAG, array('priority' => 100));
-        $container->setDefinition(TesterExtension::STEP_TESTER_WRAPPER_TAG . '.substep', $definition);
-    }
-
-    /**
-     * Loads event-dispatching step tester.
-     *
-     * @param ContainerBuilder $container
-     */
-    protected function loadEventDispatchingStepTester(ContainerBuilder $container) {
-        $definition = new Definition('Moodle\BehatExtension\EventDispatcher\Tester\MoodleEventDispatchingStepTester', array(
-            new Reference(TesterExtension::STEP_TESTER_ID),
-            new Reference(EventDispatcherExtension::DISPATCHER_ID)
-        ));
-        $definition->addTag(TesterExtension::STEP_TESTER_WRAPPER_TAG, array('priority' => -9999));
-        $container->setDefinition(TesterExtension::STEP_TESTER_WRAPPER_TAG . '.event_dispatching', $definition);
-    }
-
-    /**
      * Setups configuration for current extension.
      *
      * @param ArrayNodeDefinition $builder
@@ -289,14 +250,5 @@ class BehatExtension implements ExtensionInterface {
         // Load controller for definition printing.
         $this->loadDefinitionPrinters($container);
         $this->loadController($container);
-    }
-
-    /**
-     * Alias old namespace of given. when and then for BC.
-     */
-    private function alias_old_namespaces() {
-        class_alias('Moodle\\BehatExtension\\Context\\Step\\Given', 'Behat\\Behat\\Context\\Step\\Given', true);
-        class_alias('Moodle\\BehatExtension\\Context\\Step\\When', 'Behat\\Behat\\Context\\Step\\When', true);
-        class_alias('Moodle\\BehatExtension\\Context\\Step\\Then', 'Behat\\Behat\\Context\\Step\\Then', true);
     }
 }
