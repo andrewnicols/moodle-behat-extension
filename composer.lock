@@ -704,12 +704,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/andrewnicols/MinkPhpWebDriver.git",
-                "reference": "5e2dccfe7dd78736cef8424a0c96f5593da7da2a"
+                "reference": "cc659c35e91241271b498d0bb1e1de97472f0e38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrewnicols/MinkPhpWebDriver/zipball/5e2dccfe7dd78736cef8424a0c96f5593da7da2a",
-                "reference": "5e2dccfe7dd78736cef8424a0c96f5593da7da2a",
+                "url": "https://api.github.com/repos/andrewnicols/MinkPhpWebDriver/zipball/cc659c35e91241271b498d0bb1e1de97472f0e38",
+                "reference": "cc659c35e91241271b498d0bb1e1de97472f0e38",
                 "shasum": ""
             },
             "require": {
@@ -760,7 +760,7 @@
             "support": {
                 "source": "https://github.com/andrewnicols/MinkPhpWebDriver/tree/w3c"
             },
-            "time": "2020-12-07T07:10:01+00:00"
+            "time": "2020-12-07T11:57:57+00:00"
         },
         {
             "name": "php-webdriver/webdriver",

@@ -3,7 +3,6 @@
 namespace Moodle\BehatExtension\Driver;
 
 use Behat\Mink\Session;
-use Moodle\BehatExtension\Element\NodeElement;
 use OAndreyev\Mink\Driver\WebDriver as UpstreamDriver;
 use WebDriver\Key as key;
 
